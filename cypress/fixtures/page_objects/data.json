@@ -1,0 +1,20 @@
+{
+    "user":{
+        "invalidEmail":"jefrygmail.com",
+        "invalidPassword":"jefr",
+        "FirstName":"Anna",
+        "LastName":"Stanley",
+        "Password":"anna",
+        "Email":"stanley@gmail.com"
+    },
+    "newUser":{
+        "FirstName":"Peter",
+        "LastName":"Bailey",
+        "Email":"Bob@gmail.com",
+        "Password":"Bail"
+    },
+     "realtor":{
+     "FirstName":"John",
+     "LastName":"Doe"
+    }
+}

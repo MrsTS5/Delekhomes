@@ -1,0 +1,16 @@
+{
+    "title": "House with Large Garden",
+    "description": "A lovely 3-bedroom family home with a large garden.",
+    "city": "Fresno",
+    "address": "123 Maple Street",
+    "state": "CA",
+    "zipCode": "90687",
+    "price": "500000",
+    "bedrooms": "3",
+    "bathrooms": "2",
+    "garage": "2",
+    "sqft": "2140",
+    "lotSize": "2700",
+    "image": "house.jpg"
+  }
+  

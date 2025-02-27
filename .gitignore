@@ -1,0 +1,27 @@
+# 🔹 Node.js Dependencies
+node_modules/
+package-lock.json
+
+# 🔹 Cypress Cache & Logs
+.cypress_cache/
+cypress/logs/
+
+# 🔹 Cypress Test Artifacts (Screenshots & Videos)
+cypress/screenshots/
+cypress/videos/
+
+# 🔹 Environment Files (Secrets)
+.env
+cypress.env.json
+
+# 🔹 VS Code Settings
+.vscode/
+
+# 🔹 Cypress Reports (If using Allure or Mochawesome)
+allure-results/
+mochawesome-report/
+
+# 🔹 OS-Specific Files (Mac & Windows)
+.DS_Store
+Thumbs.db
+

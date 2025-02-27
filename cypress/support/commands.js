@@ -22,6 +22,26 @@ Cypress.Commands.add("generateUser", () => {
     confirm: password,
   };
 });
+Cypress.Commands.add('login', (email, password) => {
+    cy.fixture('data.json').then((data) => {
+        email = email || data.user.Email;
+        password = password || data.user.Password;
+
+        cy.request('POST', '/api/users/login', {
+            email: email,
+            password: password,
+        }).then((response) => {
+            expect(response.status).to.be.oneOf([200, 201]);
+            window.localStorage.setItem('accessToken', response.body.accessToken);
+        });
+    });
+});
+Cypress.Commands.add('errorHandler', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        console.error('Uncaught exception detected:', err.message);
+        return false;
+    });
+});
 
 
 

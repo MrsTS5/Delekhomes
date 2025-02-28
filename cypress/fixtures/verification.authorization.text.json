@@ -1,0 +1,5 @@
+{
+"errorEmailMessage":"Email is required",
+"invalidCredentials":"Wrong email or password",
+"invalidEmail":"Email must be a valid email address"
+}

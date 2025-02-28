@@ -1,14 +1,18 @@
-import Chance from "chance"; // Corrected import syntax
+import Chance from "chance"; // Correct import
 
 const chance = new Chance();
 
+/**
+ * Generates a random user object with unique values.
+ * Returns a Cypress-wrapped object for easy chaining.
+ */
 Cypress.Commands.add("generateUser", () => {
   const password = chance.string({
     length: 8,
     pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
   });
 
-  return {
+  const user = {
     firstName: chance.first(),
     lastName: chance.last(),
     address: chance.address(),
@@ -16,36 +20,48 @@ Cypress.Commands.add("generateUser", () => {
     state: chance.state({ full: true }),
     zipCode: chance.zip(),
     phone: chance.phone({ formatted: false }),
-    ssn: chance.ssn({ dashes: false }), // Removed dashes for better compatibility
+    ssn: chance.ssn({ dashes: false }), // Removed dashes for compatibility
     email: chance.email({ domain: "test.com" }), // Ensuring uniqueness
     password: password,
     confirm: password,
   };
-});
-Cypress.Commands.add('login', (email, password) => {
-    cy.fixture('data.json').then((data) => {
-        email = email || data.user.Email;
-        password = password || data.user.Password;
 
-        cy.request('POST', '/api/users/login', {
-            email: email,
-            password: password,
-        }).then((response) => {
-            expect(response.status).to.be.oneOf([200, 201]);
-            window.localStorage.setItem('accessToken', response.body.accessToken);
-        });
+  return cy.wrap(user); // Cypress-friendly return
+});
+
+/**
+ * Logs in a user via API and stores the access token in local storage.
+ * Defaults to credentials from `data.json` if none are provided.
+ */
+Cypress.Commands.add("login", (email, password) => {
+  cy.fixture("data.json").then((data) => {
+    const userEmail = email ?? Cypress.env("USER_EMAIL") ?? data.user.Email;
+    const userPassword = password ?? Cypress.env("USER_PASSWORD") ?? data.user.Password;
+
+    cy.request("POST", "/api/users/login", {
+      email: userEmail,
+      password: userPassword,
+    }).then((response) => {
+      expect(response.status).to.be.oneOf([200, 201]);
+      window.localStorage.setItem("accessToken", response.body.accessToken);
     });
+  });
 });
-Cypress.Commands.add('errorHandler', () => {
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        console.error('Uncaught exception detected:', err.message);
-        return false;
+
+/**
+ * Handles uncaught exceptions to prevent test failures.
+ * Uses Cypress.log for improved debugging.
+ */
+Cypress.Commands.add("errorHandler", () => {
+  Cypress.on("uncaught:exception", (err) => {
+    Cypress.log({
+      name: "Uncaught Exception",
+      message: err.message,
+      consoleProps: () => ({ error: err }),
     });
+    return false;
+  });
 });
-
-
-
-
 
 
 

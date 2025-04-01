@@ -1,10 +1,10 @@
 import Chance from "chance";
-import loginPage from "../../page_objects/login.page";
-import homePage from "../../page_objects/home.page";
-import registrationPage from "../../page_objects/registration.page";
+import loginPage from "../../fixtures/page_objects/login.page";
+import homePage from "../../fixtures/page_objects/home.page";
+import registrationPage from "../../fixtures/page_objects/registration.page";
 import verificationAuthorizationText from "../../fixtures/verification.authorization.text.json";
 import user from "../../fixtures/user.credentials.json";
-import dashboardPage from "../../page_objects/dashboard.page";
+import dashboardPage from "../../fixtures/page_objects/dashboard.page";
 
 const chance = new Chance(); // Corrected instance creation
 

@@ -5,6 +5,11 @@ module.exports = defineConfig({
     baseUrl: "https://dev.delekhomes.com",
     viewportWidth: 1400,
     viewportHeight: 1200,
+    apiUrl: "https://qa.delekhomes.com/api/users/registration",
+    retries: {
+      runMode: 2,
+      openMode: 0,
+    },
     setupNodeEvents(on, config) {
       // Define a custom task to clear cache
       on("task", {
@@ -13,6 +18,8 @@ module.exports = defineConfig({
           return null; // No-op, can be expanded if needed
         },
       });
+      require('@cypress/grep/src/plugin')(config);
+      return config;
     },
   },
   screenshotsFolder: "cypress/screenshots", // Use standard Cypress folder

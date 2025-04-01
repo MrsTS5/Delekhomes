@@ -1,7 +1,7 @@
-import loginPage from '../../page_objects/login.page';
-import dashboardPage from '../../page_objects/dashboard.page';
-import homePage from '../../page_objects/home.page';
-import verificationAuthorizationText from '../../fixtures/verification.authorization.text .json';
+import loginPage from '../../fixtures/page_objects/login.page';
+import dashboardPage from '../../fixtures/page_objects/dashboard.page';
+import homePage from '../../fixtures/page_objects/home.page';
+import verificationAuthorizationText from '../../fixtures/verification.authorization.text.json';
 import user from '../../fixtures/user.credentials.json';
 
 describe('Negative Login Scenarios', () => {
